@@ -1,0 +1,82 @@
+[project]
+name = "mmocr"
+version = "1.0.1"
+description = "OpenMMLab Text Detection, OCR, and NLP Toolbox"
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "Apache License 2.0"}
+keywords = ["Text Detection", "OCR", "KIE", "NLP"]
+maintainers = [
+    {name = "MMOCR Authors", email = "openmmlab@gmail.com"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+]
+dependencies = [
+    "imgaug",
+    "lmdb",
+    "matplotlib",
+    "numpy",
+    "opencv-python>=4.2.0.32",
+    "pyclipper",
+    "pycocotools",
+    "rapidfuzz>=2.0.0",
+    "scikit-image",
+    "torch>=2.1.2",
+    "torchvision>=0.16.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/open-mmlab/mmocr"
+
+[project.optional-dependencies]
+mim = [
+    "mmcv @ https://download.openmmlab.com/mmcv/dist/cu121/torch2.1.0/mmcv-2.1.0-cp310-cp310-manylinux1_x86_64.whl",
+    "mmdet<3.3.0,>=3.0.0rc5",
+    "mmengine<1.1.0,>=0.7.0",
+]
+tests = [
+    "asynctest",
+    "codecov",
+    "flake8",
+    "interrogate",
+    "isort",
+    "kwarray",
+    "lanms-neo==1.0.2",
+    "parameterized",
+    "pytest",
+    "pytest-cov",
+    "pytest-runner",
+    "ubelt",
+    "xdoctest>=0.10.0",
+    "yapf",
+]
+build = [
+    "pyclipper",
+]
+optional = [
+    "boto3",
+]
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pdm]
+package-type = "library"
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "setuptools>=61",
+    "wheel>=0.42.0",
+]
+
+[tool.pdm.scripts]
+infer-demo = "tools/infer.py demo/demo_text_ocr.jpg --det DBNet --rec CRNN --show --print-result"

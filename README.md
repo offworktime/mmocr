@@ -60,6 +60,29 @@ English | [简体中文](README_zh-CN.md)
     <img src="https://user-images.githubusercontent.com/25839884/219026120-ba71e48b-6e94-4bd4-b4e9-b7d175b5e362.png" width="3%" alt="" /></a>
 </div>
 
+## Packages Management
+
+**For easily setting up environment, we use `pdm` to manage packages graph.** Follow this [Installation Guide](https://pdm-project.org/latest/#installation) to get `pdm`.
+
+Once you have `pdm`, do the following steps:
+
+1. Install locked packages
+```shell
+pdm install
+```
+
+2. Specify torch, cuda, mmcv, mmdet, mmengine
+We use torch 2.1.x with cuda 12.x for mmcv 2.1.0 on linux, if you want to change environment, do this with choosen compatible mmcv wheel [Install mmcv](https://mmcv.readthedocs.io/en/latest/get_started/installation.html#install-with-pip):
+```shell
+pdm add torch==your_torch_version torchvision==your_torchvision_version
+pdm add --group mim mmdet==your_mmdet_version mmengine=your_mmengine_version mmcv==your_mmcv_version "https://download.openmmlab.com/mmcv/dist/cu{your_cuda_version}/torch{your_torch_version}/mmcv-{your_mmcv_version}-{your_python_version}-{your_os_and_arch}.whl"
+```
+
+3. Try inferring demo
+```shell
+pdm run infer-demo
+```
+
 ## Latest Updates
 
 **The default branch is now `main` and the code on the branch has been upgraded to v1.0.0. The old `main` branch (v0.6.3) code now exists on the `0.x` branch.** If you have been using the `main` branch and encounter upgrade issues, please read the [Migration Guide](https://mmocr.readthedocs.io/en/dev-1.x/migration/overview.html) and notes on [Branches](https://mmocr.readthedocs.io/en/dev-1.x/migration/branches.html) .
